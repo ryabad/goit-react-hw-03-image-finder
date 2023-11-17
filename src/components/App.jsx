@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import { fetchSearchQuery } from 'services/pixabay';
+import fetchSearchQuery from 'services/pixabay';
 
 import Notiflix from 'notiflix';
 
