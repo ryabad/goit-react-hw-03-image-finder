@@ -32,7 +32,17 @@ class App extends Component {
   };
 
   handleClick = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
+    this.setState(
+      prevState => ({ page: prevState.page + 1 }),
+      () => {
+        setTimeout(() => {
+          const button = document.getElementById('loadMoreButton');
+          if (button) {
+            button.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          }
+        }, 500);
+      }
+    );
   };
 
   componentDidUpdate(prevProps, prevState) {
