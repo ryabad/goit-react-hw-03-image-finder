@@ -33,15 +33,15 @@ class App extends Component {
 
   handleClick = () => {
     this.setState(
-      prevState => ({ page: prevState.page + 1 }),
-      () => {
-        setTimeout(() => {
-          const button = document.getElementById('loadMoreButton');
-          if (button) {
-            button.scrollIntoView({ behavior: 'smooth', block: 'end' });
-          }
-        }, 500);
-      }
+      prevState => ({ page: prevState.page + 1 })
+      // () => {
+      //   setTimeout(() => {
+      //     const button = document.getElementById('loadMoreButton');
+      //     if (button) {
+      //       button.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      //     }
+      //   }, 500);
+      // }
     );
   };
 
@@ -54,13 +54,21 @@ class App extends Component {
       fetchSearchQuery(this.state.searchText, this.state.page)
         .then(response => {
           if (response.data.total !== 0) {
-            this.setState(prevState => ({
-              images: prevState.images
-                ? [...prevState.images, ...response.data.hits]
-                : [...response.data.hits],
-              loadMore:
-                this.state.page < Math.ceil(response.data.totalHits / 12),
-            }));
+            this.setState(
+              prevState => ({
+                images: prevState.images
+                  ? [...prevState.images, ...response.data.hits]
+                  : [...response.data.hits],
+                loadMore:
+                  this.state.page < Math.ceil(response.data.totalHits / 12),
+              }),
+              () => {
+                window.scrollTo({
+                  top: document.documentElement.scrollHeight,
+                  behavior: 'smooth',
+                });
+              }
+            );
           } else {
             this.setState({ loadMore: false });
             Notiflix.Notify.warning('There is no images for your query');
