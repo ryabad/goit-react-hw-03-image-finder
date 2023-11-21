@@ -1,0 +1,12 @@
+[
+  { "query": "cat" },
+  { "query": "dog" },
+  { "query": "moonlight" },
+  { "query": "lake" },
+  { "query": "forest" },
+  { "query": "ocean" },
+  { "query": "car" },
+  { "query": "food" },
+  { "query": "football" },
+  { "query": "cosplay" }
+]

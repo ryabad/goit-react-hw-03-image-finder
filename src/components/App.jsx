@@ -10,6 +10,7 @@ import Button from './Button/Button';
 import Loader from './Loader/Loader';
 
 import css from './App.module.css';
+import Select from './Select/Select';
 
 class App extends Component {
   state = {
@@ -90,6 +91,7 @@ class App extends Component {
         {isLoading && <Loader />}
         {images && <ImageGallery data={images} />}
         {loadMore && <Button onClick={this.handleClick} />}
+        <Select />
       </div>
     );
   }
